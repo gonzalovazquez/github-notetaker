@@ -3,15 +3,30 @@ var Router = require('react-router');
 var Repos = require('./Github/Repos');
 var UserProfile = require('./Github/UserProfile');
 var Notes = require('./Notes/Notes');
+var ReactFireMixin = require('reactfire');
+var Firebase = require('firebase');
 
 var Profile = React.createClass({
-  mixins: [Router.State],
+  /*
+  Taking our components and adding
+  certain router and reactfire functionality
+  */
+  mixins: [Router.State, ReactFireMixin],
   getInitialState: function() {
     return {
       notes: ['note1', 'note2'],
       bio: {name: 'Gonzalo'},
       repos: [1, 2, 3]
     }
+  },
+  // lifecycle event: Will be called after the component mounts the view
+  componentDidMount: function() {
+    this.ref = new Firebase('https://gv-github-notetaker.firebaseio.com/');
+    var childRef = this.ref.child(this.getParams().username);
+    this.bindAsArray(childRef, 'notes');
+  },
+  componentWillUnmount: function() {
+    this.unbind('notes');
   },
   render: function() {
     var username = this.getParams().username;

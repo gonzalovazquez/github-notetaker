@@ -1,4 +1,5 @@
 var React = require('react');
+var NoteList = require('./NotesList');
 
 var Notes = React.createClass({
   propTypes: {
@@ -7,10 +8,9 @@ var Notes = React.createClass({
   },
   render: function() {
     return (
-        <div> Notes
-        <br />
-        Username: {this.props.username} <br />
-        Notes: {this.props.notes}
+        <div>
+          <h3> Notes for {this.props.username} </h3>
+          <NoteList notes={this.props.notes} />
         </div>
     )
   }
