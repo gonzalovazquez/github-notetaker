@@ -1,5 +1,5 @@
-var React = require('react');
-var Router = require('react-router');
+import React from 'react';
+import Router from 'react-router';
 
 var SearchGithub = React.createClass({
   mixins: [Router.Navigation],
@@ -24,4 +24,4 @@ var SearchGithub = React.createClass({
   }
 });
 
-module.exports = SearchGithub;
+export default SearchGithub;

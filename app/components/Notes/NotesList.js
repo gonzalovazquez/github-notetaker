@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 var NodeList = React.createClass({
   render: function() {
@@ -13,4 +13,4 @@ var NodeList = React.createClass({
   }
 });
 
-module.exports = NodeList;
+export default NodeList;

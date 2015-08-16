@@ -1,6 +1,6 @@
-var React = require('react');
-var RouteHandler = require('react-router').RouteHandler;
-var SearchGithub = require('./SearchGithub');
+import React from 'react';
+import SearchGithub from './SearchGithub';
+import { RouteHandler } from 'react-router';
 
 // Creates a new React component
 var Main = React.createClass({
@@ -19,5 +19,4 @@ var Main = React.createClass({
     )
   }
 });
-
-module.exports = Main;
+export default Main;

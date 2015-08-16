@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 var AddNote = React.createClass({
   propTypes: {
@@ -22,4 +22,4 @@ var AddNote = React.createClass({
   }
 });
 
-module.exports = AddNote;
+export default AddNote;

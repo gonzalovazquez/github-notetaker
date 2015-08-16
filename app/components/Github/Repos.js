@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 var Repos = React.createClass({
   propTypes: {
@@ -25,4 +25,4 @@ var Repos = React.createClass({
   }
 });
 
-module.exports = Repos;
+export default Repos;

@@ -1,6 +1,6 @@
-var React = require('react');
-var NoteList = require('./NotesList');
-var AddNote = require('./AddNote');
+import React from 'react';
+import NoteList from './NotesList';
+import AddNote from './AddNote';
 
 var Notes = React.createClass({
   propTypes: {
@@ -19,4 +19,4 @@ var Notes = React.createClass({
   }
 });
 
-module.exports = Notes;
+export default Notes;

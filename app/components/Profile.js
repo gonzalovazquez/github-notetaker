@@ -1,11 +1,11 @@
-var React = require('react');
-var Router = require('react-router');
-var Repos = require('./Github/Repos');
-var UserProfile = require('./Github/UserProfile');
-var Notes = require('./Notes/Notes');
-var ReactFireMixin = require('reactfire');
-var Firebase = require('firebase');
-var helpers = require('../utils/helpers');
+import React from'react';
+import Router from'react-router';
+import Repos from'./Github/Repos';
+import UserProfile from'./Github/UserProfile';
+import Notes from'./Notes/Notes';
+import ReactFireMixin from'reactfire';
+import Firebase from'firebase';
+import helpers from'../utils/helpers';
 
 var Profile = React.createClass({
   /*
@@ -71,4 +71,4 @@ var Profile = React.createClass({
   }
 });
 
-module.exports = Profile;
+export default Profile;
