@@ -5,6 +5,7 @@ var UserProfile = require('./Github/UserProfile');
 var Notes = require('./Notes/Notes');
 var ReactFireMixin = require('reactfire');
 var Firebase = require('firebase');
+var helpers = require('../utils/helpers');
 
 var Profile = React.createClass({
   /*
@@ -14,9 +15,9 @@ var Profile = React.createClass({
   mixins: [Router.State, ReactFireMixin],
   getInitialState: function() {
     return {
-      notes: ['note1', 'note2'],
-      bio: {name: 'Gonzalo'},
-      repos: [1, 2, 3]
+      notes: [],
+      bio: {},
+      repos: []
     }
   },
   // lifecycle event: Will be called after the component mounts the view
@@ -24,6 +25,14 @@ var Profile = React.createClass({
     this.ref = new Firebase('https://gv-github-notetaker.firebaseio.com/');
     var childRef = this.ref.child(this.getParams().username);
     this.bindAsArray(childRef, 'notes');
+
+    helpers.getGithubInfo(this.getParams().username)
+      .then(function(dataObj) {
+        this.setState({
+          bio: dataObj.bio,
+          repos: dataObj.repos
+        });
+      }.bind(this));
   },
   componentWillUnmount: function() {
     this.unbind('notes');
