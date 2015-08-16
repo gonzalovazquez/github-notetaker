@@ -20,9 +20,7 @@ var Profile = React.createClass({
       repos: []
     }
   },
-  // lifecycle event: Will be called after the component mounts the view
-  componentDidMount: function() {
-    this.ref = new Firebase('https://gv-github-notetaker.firebaseio.com/');
+  init: function() {
     var childRef = this.ref.child(this.getParams().username);
     this.bindAsArray(childRef, 'notes');
 
@@ -34,8 +32,18 @@ var Profile = React.createClass({
         });
       }.bind(this));
   },
+  // lifecycle event: Will be called after the component mounts the view
+  componentDidMount: function() {
+    this.ref = new Firebase('https://gv-github-notetaker.firebaseio.com/');
+    this.init();
+  },
   componentWillUnmount: function() {
     this.unbind('notes');
+  },
+  componentWillReceiveProps: function() {
+    // Dont listen to this old event
+    this.unbind('notes');
+    this.init();
   },
   // Deals with handeling state
   handleAddNote: function(newNote) {
