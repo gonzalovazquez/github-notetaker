@@ -1,17 +1,20 @@
 import React from 'react';
 import Router from 'react-router';
 
-var SearchGithub = React.createClass({
-  mixins: [Router.Navigation],
-  handleSubmit: function() {
+class SearchGithub extends React.Component {
+  handleSubmit() {
+    var router = this.context.router;
     var username = this.refs.username.getDOMNode().value;
     this.refs.username.getDOMNode().value = '';
-    this.transitionTo('profile', {username: username})
-  },
-  render: function() {
-    return(
+    // Instead of this since we cannot use  mixins on
+    // on ES2015 we are going to pass it as a function
+    // mixins: [Router.Navigation]
+    router.transitionTo('profile', {username: username});
+  }
+  render() {
+    return (
       <div className="col-sm-12">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit.bind(this)}>
           <div className="form-group col-sm-7">
             <input type="text" className="form-control" ref="username" />
           </div>
@@ -22,6 +25,10 @@ var SearchGithub = React.createClass({
       </div>
     )
   }
-});
+};
+
+SearchGithub.contextTypes = {
+  router: React.PropTypes.func.isRequired
+};
 
 export default SearchGithub;

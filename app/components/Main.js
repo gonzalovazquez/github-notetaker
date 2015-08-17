@@ -2,9 +2,8 @@ import React from 'react';
 import SearchGithub from './SearchGithub';
 import { RouteHandler } from 'react-router';
 
-// Creates a new React component
-var Main = React.createClass({
-  render: function() {
+class Main extends React.Component {
+  render() {
     return (
       <div className="main-container">
         <nav className="navbar navbar-default" role="navigation">
@@ -13,10 +12,11 @@ var Main = React.createClass({
           </div>
         </nav>
         <div className="container">
-          <RouteHandler />
+          <RouteHandler {...this.props} />
         </div>
       </div>
     )
   }
-});
+};
+
 export default Main;
