@@ -1,7 +1,7 @@
 import React from 'react';
 
-var NodeList = React.createClass({
-  render: function() {
+class NoteList extends React.Component {
+  render() {
     var notes = this.props.notes.map(function(note, index){
       return <li className="list-group-item" key={index}> {note} </li>
     });
@@ -11,6 +11,5 @@ var NodeList = React.createClass({
       </ul>
     )
   }
-});
-
+};
 export default NodeList;
